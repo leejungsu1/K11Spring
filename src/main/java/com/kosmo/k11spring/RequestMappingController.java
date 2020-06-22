@@ -4,10 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import common.StudentDTO;
 
 @Controller
 public class RequestMappingController {
@@ -60,5 +63,15 @@ public class RequestMappingController {
 		mv.addObject("pw", pw);
 		
 		return mv;
+	}
+	/*
+	@ModelAttribute 어노테이션
+		: 뷰로 전달되는 커맨드객체의 이름을 임의로 변경하고 싶을때
+	 	사용한다. 아래코드는 studentDTO -> si 로 이름을 변경한 후
+	 	View로 데이터를 전달한다.
+	 */
+	@RequestMapping("/requestMapping/modelAttribute")
+	public String studentTnfo(@ModelAttribute("si") StudentDTO studentDTO) {
+		return "02RequestMapping/modelAttribute";
 	}
 }

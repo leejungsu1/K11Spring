@@ -9,6 +9,11 @@ public class MemberDTO {
 	private String email;
 	
 	//기본생성자는 디폴트로 삽입
+	/*
+		만약 해당 DTO객체를 커맨드객체로 사용하려면 반드시
+		기본(디폴트)생성자가 존재해야한다. 그러므로 인자생성자를
+		만들어야 한다면 기본생성자를 반드시 추가해줘야한다.
+	 */
 	//getter/setter
 	
 	public String getId() {
