@@ -30,22 +30,37 @@ public class EnvApplicationConfig {
 	@Value("${board2.url}")
 	private String board_url; //접속 url
 	
+	/*
+	외부파일의 경로설정 및 읽어오기
+	 */
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer Properties() {
 		
+		//1. 프로퍼티 파일을 읽어오기 위한 객체 생성
 		PropertySourcesPlaceholderConfigurer config = new PropertySourcesPlaceholderConfigurer();
 		
+		/*
+		2. 프로퍼티 파일의 위치를 설정하기 위한 Resource타입의 객체배열
+		생성.
+		 */
 		Resource[] locations = new Resource[2];
-		
+		//"classpath:설정파일.xml"과 동일한 설정임.
 		locations[0] = new ClassPathResource("EnvBoard1.properties");
 		locations[1] = new ClassPathResource("EnvBoard2.properties");
 		
+		/*
+		3. 설정된 위치의 config참조변수의 매개변수로 파일을 읽어옴.
+		 */
 		config.setLocations(locations);
 		return config;
 		
 	}
+	/*
+	프로퍼티 소스를 통해 읽어온 값으로 빈을 생성함.
+	 */
 	@Bean
 	public BoardConnection boardConfig() {
+		//DTO객체를 생성하고 setter()를 통해 초기값을 설정함.
 		BoardConnection bconn = new BoardConnection();
 		
 		bconn.setUser(board_user);

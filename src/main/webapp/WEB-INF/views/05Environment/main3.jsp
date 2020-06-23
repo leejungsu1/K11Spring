@@ -25,7 +25,7 @@ $(function(){
 		<li>아이디 : ${id }</li>
 		<li>패스워드 : ${pass }</li>
 		<li>드라이버 : ${driver }</li>
-		<li>커넥트URL : ${url }</li>
+		<li>커넥션URL : ${url }</li>
 	</ul>
 	
 </div>
