@@ -127,7 +127,19 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
 		</dependency>   
-		 
+		 <!-- ojdbc6(오라클 드라이버) 의존설정 -->
+		<dependency> 
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>
+		
+		<!-- SPRING JDBC(JDBCTemplate)을 사용하기 위한 의존설정 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>	
 	</dependencies>
     <build>
         <plugins>
