@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import transaction.TicketDAO;
 import transaction.TicketDTO;
+import transaction.TicketTplDAO;
 @Controller
 public class TransactionController {
 	
@@ -47,11 +48,33 @@ public class TransactionController {
 	/*
 	2. 트랜잭션 템플릿을 활용한 처리
 	 */
-	
-	
-	
-	
-	
-	
-	
+	/*
+	servlet-context.xml에서 생성한 TicketTplDAO타입의 빈을
+	autowired 받음
+	 */
+	private TicketTplDAO daoTpl;
+	@Autowired
+	public void setDaTpl(TicketTplDAO daoTpl) {
+		this.daoTpl = daoTpl;
+	}
+	//티켓구매페이지
+	@RequestMapping("/transaction/buyTicketTpl.do")
+	public String buyTicketTpl() {
+		return "08Transaction/buyTicketTpl";
+	}
+	//티켓구매처리페이지
+	@RequestMapping("/transaction/buyTicketTplAction.do")
+	public String buyTicketTplAction(TicketDTO ticketDTO, Model model) {
+		//티켓구매처리를 위한 DAO호출
+		boolean isBool = daoTpl.buyTicket(ticketDTO);
+		if(isBool==true) {
+			model.addAttribute("successOrFail","티켓구매가 정상처리 되었습니다.");
+		}
+		else {
+			model.addAttribute("successOrFail","티켓구매가 취소되었습니다. 다시 시도해 주세요.");
+		}
+		//뷰로 전달할 데이터 저장
+		model.addAttribute("ticketInfo",ticketDTO);
+		return "08Transaction/buyTicketTplAction";
+	}
 }
